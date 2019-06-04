@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>万年历客户端分享</title>
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, user-scalable = no,initial-scale=1.0, maximum-scale=1.0, user-scalable = no">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="stylesheet" type="text/css" href="./wnlui.css">
+  <script src="//cdn.bootcss.com/eruda/1.4.2/eruda.min.js"></script>
+  <script>eruda.init();</script>
+  <script type="text/javascript" src="./index.js"></script>
+  <style>
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <button class="btn1">微信分享</button>
+  </div>
+  <div>
+    <button class="btn2">设置第二次微信微信分享</button>
+  </div>
+  <div>
+    <!-- <button class="btn3">微信分享(有回调)</button> -->
+  </div>
+  <script>
+    window.onload = function () {
+      let wxShare = new WechatShare({
+        title: '这是自定义分享标题',
+        text: '这是自定义分享文案',
+        imgUrl: 'http://www.51wnl.com/wnl_bless/img/write2-myself@3x.png',
+        url: 'http://mobile.51wnl.com/clientH5/share/share.html',
+        debug: true,
+        callback: function (e) {
+          setTimeout(() => {
+            alert('share callback');
+          }, 500);
+        }
+      })
+
+      document.querySelector('.btn1').onclick = function () {
+        // wnlui.wnlShare.setShareData({
+        //   title: 'title',
+        //   text: 'text',
+        //   image: 'http://www.51wnl.com/wnl_bless/img/write2-myself@3x.png',
+        //   url: 'http://www.baidu.com'
+        // });
+        // wnlui.wnlShare.showSharePlatform();
+        alert('点击右上角微信分享');
+      };
+      document.querySelector('.btn2').onclick = function () {
+        wxShare.setShareParams({
+          title: '这是第二次自定义分享标题',
+          text: '这是第二次自定义分享文案',
+          imgUrl: 'http://www.51wnl.com/wnl_bless/img/write2-myself@3x.png',
+          url: 'http://mobile.51wnl.com/clientH5/share/share.html',
+          debug: true,
+          callback: function (e) {
+            setTimeout(() => {
+              alert('share callback repeat');
+            }, 500);
+          }
+        })
+      };
+      // document.querySelector('.btn3').onclick = function () {
+      //   wnlui.wxShare({
+      //     title: '这是自定义分享标题',
+      //     text: '这是自定义分享文案',
+      //     imgUrl: 'http://www.51wnl.com/wnl_bless/img/write2-myself@3x.png',
+      //     url: 'http://mobile.51wnl.com/clientH5/share/share.html',
+      //     callback: function (e) {
+      //       alert('share callback');
+      //     }
+      //   });
+      // };
+    };
+  </script>
+</body>
+
+</html>
